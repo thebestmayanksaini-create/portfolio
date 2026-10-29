@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mayank Saini — God-Tier Software & DSA Architect</title>
+  <meta name="description" content="Portfolio of Mayank Saini — Software Engineer, B.Tech 2nd Year at MAIT Delhi. 3D WebGL Experience, Live C++ Algorithm Visualizer & Full-Stack Architect." />
+
+  <!-- Fonts: Syne, Space Grotesk, JetBrains Mono, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6.5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Three.js for 3D WebGL Universe -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="god-mode">
+
+  <!-- 3D Three.js WebGL Canvas -->
+  <div id="webglContainer"></div>
+
+  <!-- Cyber Scanline & Holographic Noise -->
+  <div class="crt-scanlines"></div>
+  <div class="cyber-vignette"></div>
+
+  <!-- Custom Inertial Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span id="cursorLabel"></span></div>
+
+  <!-- Cyber Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-box">
+      <div class="preloader-glitch" data-text="MAYANK.AI">MAYANK.AI</div>
+      <div class="preloader-sub">&gt; INITIATING THREE.JS 3D ENGINE & NEURAL INTERFACES...</div>
+      <div class="preloader-meter"><div class="meter-bar" id="loadBar"></div></div>
+      <div class="preloader-counter"><span id="loadPercent">0</span>% LOADED</div>
+    </div>
+  </div>
+
+  <!-- Floating Audio & God-Mode HUD Dock -->
+  <div class="god-hud-dock">
+    <button class="hud-pill-btn" id="sfxToggle" title="Audio FX" aria-label="Toggle SFX">
+      <i class="fa-solid fa-volume-high" id="sfxIcon"></i>
+      <span class="hud-text">SFX: ON</span>
+    </button>
+    <button class="hud-pill-btn" id="hyperdriveBtn" title="Toggle Cyber Hyperdrive" aria-label="Toggle Hyperdrive">
+      <i class="fa-solid fa-bolt-lightning" id="hyperIcon"></i>
+      <span class="hud-text">HYPERDRIVE</span>
+    </button>
+    <button class="hud-pill-btn" id="arcadeTriggerBtn" title="Launch Arcade Game" aria-label="Play Game">
+      <i class="fa-solid fa-gamepad" style="color:#00f2fe;"></i>
+      <span class="hud-text">PLAY GAME</span>
+    </button>
+  </div>
+
+  <!-- Floating Island Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-island">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-sym">&lt;</span>
+        <span class="logo-main">MAYANK</span>
+        <span class="logo-badge">PRO</span>
+        <span class="logo-sym">/&gt;</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#hero" class="nav-link active"><i class="fa-solid fa-cube"></i> 3D Core</a>
+        <a href="#algoSandbox" class="nav-link"><i class="fa-solid fa-play"></i> Algo Sandbox</a>
+        <a href="#bento" class="nav-link"><i class="fa-solid fa-microchip"></i> Bento OS</a>
+        <a href="#projects" class="nav-link"><i class="fa-solid fa-layer-group"></i> Builds</a>
+        <a href="#skills" class="nav-link"><i class="fa-solid fa-atom"></i> Arsenal</a>
+        <a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Transmit</a>
+      </nav>
+
+      <div class="nav-end">
+        <a href="mailto:thebestmayanksaini@gmail.com" class="nav-hire-btn">
+          <span class="beacon-dot"></span>
+          <span>Hire Me</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO SECTION WITH 3D WEBGL CORE ==================== -->
+    <section class="hero-wrap" id="hero">
+      <div class="container hero-grid">
+        <!-- Hero Text -->
+        <div class="hero-col-text">
+          <div class="hero-chip reveal">
+            <span class="chip-dot"></span>
+            <span>B.Tech 2nd Year CSE @ <strong>MAIT Delhi</strong> &bull; Available 2025/2026</span>
+          </div>
+
+          <h1 class="hero-title reveal">
+            <span class="hero-title-sub">NEXT-GEN SOFTWARE ARCHITECT</span>
+            <span class="hero-title-main">MAYANK <span class="shimmer-text">SAINI</span></span>
+          </h1>
+
+          <div class="typing-container reveal">
+            <span class="t-tag">&gt; engineering: </span>
+            <span class="t-word" id="heroTyping"></span>
+            <span class="t-blink">_</span>
+          </div>
+
+          <p class="hero-subtext reveal">
+            Mastering <strong>C++ Data Structures & Algorithms</strong> (500+ Solved) and engineering resilient <strong>Full-Stack Architectures</strong> with React, Node.js, and TypeScript. Building web experiences that blow minds.
+          </p>
+
+          <div class="hero-buttons reveal">
+            <a href="#algoSandbox" class="btn-hyper btn-hyper-cyan">
+              <span class="btn-glow-layer"></span>
+              <span class="btn-content"><i class="fa-solid fa-play"></i> Live Algo Visualizer</span>
+            </a>
+            <a href="#projects" class="btn-hyper btn-hyper-glass">
+              <span class="btn-content"><i class="fa-solid fa-code"></i> Inspect Projects</span>
+            </a>
+            <button class="btn-hyper btn-hyper-arcade" id="openArcadeHeroBtn">
+              <span class="btn-content"><i class="fa-solid fa-gamepad"></i> Play Bug Crusher</span>
+            </button>
+          </div>
+
+          <!-- Quick Stats Counter Strip -->
+          <div class="hero-counter-strip reveal">
+            <div class="c-stat">
+              <div class="c-num"><span class="counter-num" data-val="500">0</span><span class="c-plus">+</span></div>
+              <div class="c-lbl">DSA Problems (C++)</div>
+            </div>
+            <div class="c-sep"></div>
+            <div class="c-stat">
+              <div class="c-num"><span class="counter-num" data-val="15">0</span><span class="c-plus">+</span></div>
+              <div class="c-lbl">Repositories Built</div>
+            </div>
+            <div class="c-sep"></div>
+            <div class="c-stat">
+              <div class="c-num"><span class="c-txt">MAIT</span></div>
+              <div class="c-lbl">Delhi (Class of 2027)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero 3D Holographic Capsule Viewport -->
+        <div class="hero-col-portrait reveal">
+          <div class="hologram-stage" id="holoStage">
+            <!-- HUD Reticles -->
+            <div class="hud-corner c-tl"></div>
+            <div class="hud-corner c-tr"></div>
+            <div class="hud-corner c-bl"></div>
+            <div class="hud-corner c-br"></div>
+
+            <div class="holo-core-lens">
+              <div class="laser-scanner"></div>
+              <img src="profile.png" alt="Mayank Saini" class="holo-photo" id="holoPhoto" />
+              <div class="holo-vignette"></div>
+            </div>
+
+            <!-- Orbiting 3D Glass Badges -->
+            <div class="orbit-badge ob-1"><i class="fa-solid fa-c" style="color:#00f2fe;"></i> C++ DSA Master</div>
+            <div class="orbit-badge ob-2"><i class="fa-brands fa-react" style="color:#61dafb;"></i> React 19 / TS</div>
+            <div class="orbit-badge ob-3"><i class="fa-brands fa-node-js" style="color:#22c55e;"></i> Node & Express</div>
+            <div class="orbit-badge ob-4"><i class="fa-solid fa-graduation-cap" style="color:#f59e0b;"></i> MAIT Delhi 2nd Yr</div>
+
+            <!-- Status HUD -->
+            <div class="holo-bottom-hud">
+              <span class="hud-pulse-ring"></span>
+              <span>NEURAL LINK ONLINE // 60 FPS WEBGL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infinite Kinetic Marquee -->
+      <div class="kinetic-marquee-wrap">
+        <div class="marquee-track">
+          <span>✦ C++ & DSA SPECIALIST</span>
+          <span>✦ B.TECH 2ND YEAR @ MAIT DELHI</span>
+          <span>✦ FULL-STACK ARCHITECT</span>
+          <span>✦ 500+ PROBLEMS SOLVED</span>
+          <span>✦ REACT 19 & TYPESCRIPT</span>
+          <span>✦ NODE.JS & MONGODB</span>
+          <span>✦ 3D WEBGL INTERACTION</span>
+          <span>✦ C++ & DSA SPECIALIST</span>
+          <span>✦ B.TECH 2ND YEAR @ MAIT DELHI</span>
+          <span>✦ FULL-STACK ARCHITECT</span>
+          <span>✦ 500+ PROBLEMS SOLVED</span>
+          <span>✦ REACT 19 & TYPESCRIPT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== LIVE ALGORITHM VISUALIZER SANDBOX ==================== -->
+    <section class="section algo-section" id="algoSandbox">
+      <div class="container">
+        <div class="section-heading-box">
+          <div class="sec-tag"><i class="fa-solid fa-play"></i> INTERACTIVE PLAYGROUND</div>
+          <h2 class="sec-title">Live C++ Algorithm <span class="shimmer-text">Sandbox</span></h2>
+          <p class="sec-subtitle">Experience Data Structures & Algorithms running in real time with synthesized audio frequencies.</p>
+        </div>
+
+        <div class="sandbox-card" data-spotlight>
+          <div class="sandbox-controls-bar">
+            <div class="ctrl-group">
+              <label for="algoSelect"><i class="fa-solid fa-code-fork"></i> Algorithm:</label>
+              <select id="algoSelect" class="cyber-select">
+                <option value="bubble">Bubble Sort — O(N²)</option>
+                <option value="selection">Selection Sort — O(N²)</option>
+                <option value="insertion">Insertion Sort — O(N²)</option>
+                <option value="bsearch">Binary Search — O(log N)</option>
+              </select>
+            </div>
+
+            <div class="ctrl-group">
+              <label><i class="fa-solid fa-gauge-high"></i> Speed:</label>
+              <input type="range" id="algoSpeed" min="10" max="150" value="60" class="cyber-slider" />
+            </div>
+
+            <div class="ctrl-buttons">
+              <button class="btn-mini btn-mini-primary" id="startAlgoBtn">
+                <i class="fa-solid fa-play"></i> Run Algorithm
+              </button>
+              <button class="btn-mini btn-mini-ghost" id="resetAlgoBtn">
+                <i class="fa-solid fa-arrows-rotate"></i> New Array
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Audio-Visualizer Bars Container -->
+          <div class="sandbox-canvas-viewport" id="barsViewport"></div>
+
+          <div class="sandbox-stats-footer">
+            <div class="s-metric">
+              <span class="m-label">Array Size:</span>
+              <span class="m-val" id="arraySizeVal">28 Elements</span>
+            </div>
+            <div class="s-metric">
+              <span class="m-label">Comparisons:</span>
+              <span class="m-val" id="comparisonsVal">0</span>
+            </div>
+            <div class="s-metric">
+              <span class="m-label">Swaps:</span>
+              <span class="m-val" id="swapsVal">0</span>
+            </div>
+            <div class="s-metric">
+              <span class="m-label">Status:</span>
+              <span class="m-val status-idle" id="algoStatus">IDLE — Ready to execute</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== BENTO OS (SHOWCASE GRID) ==================== -->
+    <section class="section bento-section" id="bento">
+      <div class="container">
+        <div class="section-heading-box">
+          <div class="sec-tag"><i class="fa-solid fa-microchip"></i> SYSTEM CORE</div>
+          <h2 class="sec-title">Mayank's <span class="shimmer-text">Bento OS</span></h2>
+          <p class="sec-subtitle">A high-density cybernetic dashboard reflecting real metrics, GitHub activity, and a live CLI.</p>
+        </div>
+
+        <div class="bento-layout">
+          <!-- Bento 1: Interactive Functional Bash Terminal -->
+          <div class="b-card b-col-7 b-terminal" data-spotlight>
+            <div class="b-card-header">
+              <div class="window-pills">
+                <span class="w-dot red"></span>
+                <span class="w-dot yellow"></span>
+                <span class="w-dot green"></span>
+              </div>
+              <span class="b-title"><i class="fa-solid fa-terminal"></i> bash // mayank@mait-delhi:~$</span>
+              <button class="b-clear-btn" id="termClear">clear</button>
+            </div>
+            <div class="terminal-screen" id="termScreen">
+              <div class="t-line info-line">MayankOS Core v3.0 [Initialized]. Type <span class="t-cyan">'help'</span> or <span class="t-cyan">'projects'</span>.</div>
+              <div id="termHist"></div>
+              <div class="t-prompt-row">
+                <span class="t-prompt">guest@mayank:~$</span>
+                <input type="text" id="termInput" autocomplete="off" spellcheck="false" placeholder="try 'skills', 'dsa', 'matrix', 'game'..." />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 2: LeetCode & Algorithmic Radar -->
+          <div class="b-card b-col-5 b-dsa" data-spotlight>
+            <div class="b-card-header">
+              <span class="b-title"><i class="fa-solid fa-brain"></i> Algorithmic Core</span>
+              <span class="b-pill">C++ STL</span>
+            </div>
+            <div class="dsa-viz-row">
+              <div class="dsa-donut-wrap">
+                <svg viewBox="0 0 100 100" class="donut-svg">
+                  <circle class="d-track" cx="50" cy="50" r="42"></circle>
+                  <circle class="d-bar d-easy" cx="50" cy="50" r="42"></circle>
+                  <circle class="d-bar d-med" cx="50" cy="50" r="34"></circle>
+                  <circle class="d-bar d-hard" cx="50" cy="50" r="26"></circle>
+                </svg>
+                <div class="dsa-donut-label">
+                  <span class="d-big">500+</span>
+                  <span class="d-sub">Solved</span>
+                </div>
+              </div>
+
+              <div class="dsa-ranks">
+                <div class="rank-row">
+                  <div class="r-info"><span class="r-easy">Easy</span><span>195+</span></div>
+                  <div class="r-bar"><div class="r-fill easy-bg" style="width: 88%;"></div></div>
+                </div>
+                <div class="rank-row">
+                  <div class="r-info"><span class="r-med">Medium</span><span>260+</span></div>
+                  <div class="r-bar"><div class="r-fill med-bg" style="width: 76%;"></div></div>
+                </div>
+                <div class="rank-row">
+                  <div class="r-info"><span class="r-hard">Hard</span><span>50+</span></div>
+                  <div class="r-bar"><div class="r-fill hard-bg" style="width: 45%;"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="dsa-tags-strip">
+              <span>DP</span><span>Graphs</span><span>Trees</span><span>Sliding Window</span><span>Binary Search</span>
+            </div>
+          </div>
+
+          <!-- Bento 3: GitHub Heatmap -->
+          <div class="b-card b-col-6 b-github" data-spotlight>
+            <div class="b-card-header">
+              <span class="b-title"><i class="fa-brands fa-github"></i> Git Consistency Matrix</span>
+              <span class="b-pill live-pill"><span class="b-pulse"></span> Active Daily</span>
+            </div>
+            <div class="gh-heatmap-container">
+              <div class="gh-tiles-grid" id="ghGrid"></div>
+            </div>
+            <div class="gh-meta-footer">
+              <span><i class="fa-solid fa-code-commit"></i> 850+ commits across systems & apps</span>
+              <div class="gh-scale">
+                <span>Less</span>
+                <span class="c-sq l-0"></span><span class="c-sq l-1"></span><span class="c-sq l-2"></span><span class="c-sq l-3"></span><span class="c-sq l-4"></span>
+                <span>More</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 4: Delhi IST Clock -->
+          <div class="b-card b-col-3 b-clock" data-spotlight>
+            <div class="b-card-header">
+              <span class="b-title"><i class="fa-solid fa-clock"></i> Delhi, India (IST)</span>
+              <span class="b-pill">UTC +5:30</span>
+            </div>
+            <div class="clock-middle">
+              <div class="clock-digits" id="liveClock">--:--:--</div>
+              <div class="clock-mode" id="clockMode">Active Code Session ☕</div>
+            </div>
+            <div class="clock-status">
+              <span class="status-orb"></span>
+              <span>Open to Internships</span>
+            </div>
+          </div>
+
+          <!-- Bento 5: Core Focus Tech Stack -->
+          <div class="b-card b-col-3 b-focus" data-spotlight>
+            <div class="b-card-header">
+              <span class="b-title"><i class="fa-solid fa-crosshairs"></i> Tech Weapons</span>
+              <span class="b-pill">Modern</span>
+            </div>
+            <div class="tech-chips-cloud">
+              <div class="t-chip"><i class="fa-solid fa-c"></i> C++20</div>
+              <div class="t-chip"><i class="fa-brands fa-react"></i> React 19</div>
+              <div class="t-chip"><i class="fa-brands fa-node-js"></i> Node.js</div>
+              <div class="t-chip"><i class="fa-brands fa-js"></i> TypeScript</div>
+              <div class="t-chip"><i class="fa-solid fa-database"></i> MongoDB</div>
+              <div class="t-chip"><i class="fa-solid fa-shield-halved"></i> JWT Auth</div>
+              <div class="t-chip"><i class="fa-solid fa-cubes"></i> System Design</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FEATURED BUILDS ==================== -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-heading-box">
+          <div class="sec-tag"><i class="fa-solid fa-layer-group"></i> PRODUCTION BUILDS</div>
+          <h2 class="sec-title">Featured <span class="shimmer-text">Creations</span></h2>
+          <p class="sec-subtitle">Engineered with high concurrency, clean architecture, and responsive polish.</p>
+        </div>
+
+        <div class="projects-stack">
+          <!-- Project 1 -->
+          <div class="proj-card" data-spotlight>
+            <div class="proj-mockup-wrap">
+              <div class="mac-bar">
+                <span class="m-dot r"></span><span class="m-dot y"></span><span class="m-dot g"></span>
+                <span class="m-url">https://dev-collab-workspace.app</span>
+              </div>
+              <div class="mockup-display display-mern">
+                <i class="fa-solid fa-layer-group m-icon-huge"></i>
+                <span class="m-chip-badge">Full-Stack SaaS Platform</span>
+              </div>
+            </div>
+            <div class="proj-info-wrap">
+              <div class="p-tags-top">
+                <span class="tag-accent">MERN Stack</span>
+                <span class="tag-year">2026 Production</span>
+              </div>
+              <h3 class="p-heading">Enterprise Collaborative Workspace</h3>
+              <p class="p-para">
+                A high-performance workspace featuring real-time state synchronization, encrypted authentication, drag-and-drop kanban boards, and responsive RESTful endpoints.
+              </p>
+              <div class="p-tech-row">
+                <span>React</span><span>TypeScript</span><span>Node.js</span><span>Express</span><span>MongoDB</span>
+              </div>
+              <div class="p-btns">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-hyper btn-hyper-cyan">
+                  <i class="fa-brands fa-github"></i> Inspect Code
+                </a>
+                <a href="#" class="btn-hyper btn-hyper-glass">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="proj-card proj-reverse" data-spotlight>
+            <div class="proj-mockup-wrap">
+              <div class="mac-bar">
+                <span class="m-dot r"></span><span class="m-dot y"></span><span class="m-dot g"></span>
+                <span class="m-url">https://algo-engine.cpp</span>
+              </div>
+              <div class="mockup-display display-algo">
+                <i class="fa-solid fa-diagram-project m-icon-huge"></i>
+                <span class="m-chip-badge">C++ Algorithmic Engine</span>
+              </div>
+            </div>
+            <div class="proj-info-wrap">
+              <div class="p-tags-top">
+                <span class="tag-accent tag-purple">C++ & Graph Systems</span>
+                <span class="tag-year">2026 Algorithms</span>
+              </div>
+              <h3 class="p-heading">Interactive Pathfinding & Algorithm Visualizer</h3>
+              <p class="p-para">
+                Interactive implementations of Dijkstra's, A* Pathfinding, Tree Traversals, and Dynamic Programming visualizers demonstrating memory optimization and asymptotic analysis.
+              </p>
+              <div class="p-tech-row">
+                <span>C++</span><span>Data Structures</span><span>Algorithms</span><span>HTML5 Canvas</span>
+              </div>
+              <div class="p-btns">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-hyper btn-hyper-cyan">
+                  <i class="fa-brands fa-github"></i> Inspect Code
+                </a>
+                <a href="#algoSandbox" class="btn-hyper btn-hyper-glass">
+                  <i class="fa-solid fa-play"></i> Try Sandbox Above
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="proj-card" data-spotlight>
+            <div class="proj-mockup-wrap">
+              <div class="mac-bar">
+                <span class="m-dot r"></span><span class="m-dot y"></span><span class="m-dot g"></span>
+                <span class="m-url">https://market-pulse.io</span>
+              </div>
+              <div class="mockup-display display-dash">
+                <i class="fa-solid fa-chart-line m-icon-huge"></i>
+                <span class="m-chip-badge">Real-Time Data Dashboard</span>
+              </div>
+            </div>
+            <div class="proj-info-wrap">
+              <div class="p-tags-top">
+                <span class="tag-accent">Frontend Systems</span>
+                <span class="tag-year">2026 Interface</span>
+              </div>
+              <h3 class="p-heading">High-Frequency Telemetry Dashboard</h3>
+              <p class="p-para">
+                Ultra-smooth charting interface handling high-rate data feeds, debounced search filters, responsive vector graphs, and zero-flicker re-rendering.
+              </p>
+              <div class="p-tech-row">
+                <span>React.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>REST API</span>
+              </div>
+              <div class="p-btns">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-hyper btn-hyper-cyan">
+                  <i class="fa-brands fa-github"></i> Inspect Code
+                </a>
+                <a href="#" class="btn-hyper btn-hyper-glass">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TECHNICAL ARSENAL ==================== -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-heading-box">
+          <div class="sec-tag"><i class="fa-solid fa-atom"></i> WEAPONRY</div>
+          <h2 class="sec-title">Technical <span class="shimmer-text">Arsenal</span></h2>
+        </div>
+
+        <div class="arsenal-grid">
+          <div class="a-card" data-spotlight>
+            <div class="a-header">
+              <div class="a-icon"><i class="fa-solid fa-code"></i></div>
+              <h3>Languages</h3>
+            </div>
+            <div class="a-list">
+              <div class="a-item"><span><i class="fa-solid fa-c" style="color:#00f2fe;"></i> C++ (DSA & STL)</span><span class="a-pct">Mastery</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:92%;"></div></div>
+
+              <div class="a-item"><span><i class="fa-brands fa-js" style="color:#f59e0b;"></i> JavaScript (ES6+)</span><span class="a-pct">Advanced</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:90%;"></div></div>
+
+              <div class="a-item"><span><i class="fa-brands fa-js" style="color:#38bdf8;"></i> TypeScript</span><span class="a-pct">Proficient</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:85%;"></div></div>
+            </div>
+          </div>
+
+          <div class="a-card" data-spotlight>
+            <div class="a-header">
+              <div class="a-icon"><i class="fa-brands fa-react"></i></div>
+              <h3>Frontend Systems</h3>
+            </div>
+            <div class="a-list">
+              <div class="a-item"><span><i class="fa-brands fa-react" style="color:#00f2fe;"></i> React.js</span><span class="a-pct">90%</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:90%;"></div></div>
+
+              <div class="a-item"><span><i class="fa-solid fa-wand-magic-sparkles" style="color:#a855f7;"></i> Tailwind CSS</span><span class="a-pct">94%</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:94%;"></div></div>
+
+              <div class="a-item"><span><i class="fa-solid fa-cubes" style="color:#22c55e;"></i> Three.js / WebGL</span><span class="a-pct">Applied</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:80%;"></div></div>
+            </div>
+          </div>
+
+          <div class="a-card" data-spotlight>
+            <div class="a-header">
+              <div class="a-icon"><i class="fa-solid fa-server"></i></div>
+              <h3>Backend & DB</h3>
+            </div>
+            <div class="a-list">
+              <div class="a-item"><span><i class="fa-brands fa-node-js" style="color:#22c55e;"></i> Node.js & Express</span><span class="a-pct">86%</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:86%;"></div></div>
+
+              <div class="a-item"><span><i class="fa-solid fa-database" style="color:#00f2fe;"></i> MongoDB & NoSQL</span><span class="a-pct">82%</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:82%;"></div></div>
+
+              <div class="a-item"><span><i class="fa-solid fa-network-wired" style="color:#f59e0b;"></i> REST Architecture</span><span class="a-pct">88%</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:88%;"></div></div>
+            </div>
+          </div>
+
+          <div class="a-card" data-spotlight>
+            <div class="a-header">
+              <div class="a-icon"><i class="fa-solid fa-brain"></i></div>
+              <h3>CS Foundations</h3>
+            </div>
+            <div class="a-list">
+              <div class="a-item"><span><i class="fa-solid fa-sitemap" style="color:#a855f7;"></i> Data Structures & Algos</span><span class="a-pct">Top Tier</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:92%;"></div></div>
+
+              <div class="a-item"><span><i class="fa-brands fa-git-alt" style="color:#ef4444;"></i> Git & GitHub Workflow</span><span class="a-pct">94%</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:94%;"></div></div>
+
+              <div class="a-item"><span><i class="fa-solid fa-shapes" style="color:#00f2fe;"></i> Object-Oriented Design</span><span class="a-pct">90%</span></div>
+              <div class="a-meter"><div class="a-fill" style="width:90%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT TRANSMISSION ==================== -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-heading-box">
+          <div class="sec-tag"><i class="fa-solid fa-satellite-dish"></i> TRANSMIT</div>
+          <h2 class="sec-title">Initiate <span class="shimmer-text">Contact</span></h2>
+          <p class="sec-subtitle">Reach out for internships, project collaborations, or high-octane engineering conversations.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="c-info-box" data-spotlight>
+            <h3>Direct Transmission Channels</h3>
+            <p>I am actively interviewing for 2025/2026 software engineering internships. Connect directly:</p>
+
+            <div class="c-details-list">
+              <div class="c-row">
+                <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <span class="c-lbl">Primary Email</span>
+                  <a href="mailto:thebestmayanksaini@gmail.com" class="c-link">thebestmayanksaini@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="c-row">
+                <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <span class="c-lbl">Location</span>
+                  <span class="c-val">Delhi, India</span>
+                </div>
+              </div>
+
+              <div class="c-row">
+                <div class="c-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div>
+                  <span class="c-lbl">Academic Institute</span>
+                  <span class="c-val">MAIT Delhi &bull; B.Tech CSE (2nd Year)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="copy-box">
+              <code>thebestmayanksaini@gmail.com</code>
+              <button class="copy-pill-btn" id="copyBtn"><i class="fa-regular fa-copy"></i> Copy</button>
+            </div>
+
+            <div class="c-socials-row">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="s-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="s-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://leetcode.com" target="_blank" rel="noopener noreferrer" class="s-icon" title="LeetCode"><i class="fa-solid fa-code"></i></a>
+              <a href="mailto:thebestmayanksaini@gmail.com" class="s-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+          </div>
+
+          <div class="c-form-box" data-spotlight>
+            <form id="contactForm" class="contact-cyber-form">
+              <div class="f-group">
+                <label for="cName"><i class="fa-regular fa-user"></i> Full Name</label>
+                <input type="text" id="cName" required placeholder="Alex Turner" />
+              </div>
+
+              <div class="f-group">
+                <label for="cEmail"><i class="fa-regular fa-envelope"></i> Email Address</label>
+                <input type="email" id="cEmail" required placeholder="alex@tech.com" />
+              </div>
+
+              <div class="f-group">
+                <label for="cSubject"><i class="fa-solid fa-tag"></i> Subject</label>
+                <input type="text" id="cSubject" required placeholder="Internship Opportunity / Project Inquiry" />
+              </div>
+
+              <div class="f-group">
+                <label for="cMsg"><i class="fa-regular fa-message"></i> Message</label>
+                <textarea id="cMsg" rows="5" required placeholder="Hi Mayank, we saw your portfolio and would love to connect..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-hyper btn-hyper-cyan w-full" id="submitBtn">
+                <span class="btn-content"><i class="fa-solid fa-paper-plane"></i> Transmit Message</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== PLAYABLE RETRO ARCADE MODAL ==================== -->
+  <div class="arcade-modal" id="arcadeModal">
+    <div class="arcade-window">
+      <div class="arcade-header">
+        <span class="arcade-title"><i class="fa-solid fa-gamepad"></i> MAYANK'S RETRO ARCADE // BUG CRUSHER</span>
+        <button class="arcade-close" id="closeArcadeBtn">&times;</button>
+      </div>
+      <div class="arcade-body">
+        <canvas id="gameCanvas" width="600" height="400"></canvas>
+        <div class="arcade-overlay" id="gameOverlay">
+          <h2>BUG CRUSHER</h2>
+          <p>Dodge Segment Faults & shoot lasers to crush bugs!</p>
+          <p class="controls-hint">Controls: [← / → or A / D] to Move &bull; [SPACEBAR] to Fire</p>
+          <button class="btn-hyper btn-hyper-cyan" id="startArcadeGameBtn">START GAME</button>
+        </div>
+      </div>
+      <div class="arcade-footer">
+        <span id="scoreDisplay">SCORE: 0</span>
+        <span id="highScoreDisplay">BEST: 0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <div class="f-brand">&lt;Mayank Saini/&gt; &bull; Software Engineer</div>
+      <div class="f-credits">Designed with Three.js 3D &bull; MAIT Delhi &bull; 2026</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
